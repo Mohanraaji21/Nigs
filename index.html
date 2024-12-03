@@ -6,71 +6,79 @@
     <title>Memory Card Game</title>
     <style>
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: #fff;
-        }
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
 
-        
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+/* Title Styling */
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-        
-        .game-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
+/* Container for the game */
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default to 4 columns */
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    width: 100%; /* Ensure it doesn't exceed the viewport */
+    justify-items: center;
+    margin: 0 auto;
+    box-sizing: border-box; /* Ensure padding does not cause overflow */
+}
 
-       
-        img {
-            height: 100px;
-            width: 100px;
-            cursor: pointer;
-            border: 2px solid #fff;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+/* Styling for the image cards */
+img {
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
 
-       
-        img.flipped {
-            animation: flip 0.6s ease;
-        }
+/* Flip animation for images */
+img.flipped {
+    animation: flip 0.6s ease;
+}
 
-        @keyframes flip {
-            0% {
-                transform: rotateY(0deg);
-            }
-            50% {
-                transform: rotateY(90deg);
-            }
-            100% {
-                transform: rotateY(0deg);
-            }
-        }
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
 
-        
+/* Winning message */
 #winMessage {
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -102,6 +110,64 @@
 
 #winMessage button:hover {
     background: #00f2fe;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens larger than 768px (tablets and above) */
+@media (min-width: 768px) {
+    .game-container {
+        grid-template-columns: repeat(6, 1fr); /* 6 columns on larger screens */
+        max-width: 80%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* For screens between 480px and 767px (tablets and medium screens) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .game-container {
+        grid-template-columns: repeat(5, 1fr); /* 5 columns on medium screens */
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* For smaller screens (phones) */
+@media (max-width: 479px) {
+    .game-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on small screens */
+        max-width: 100%;
+        width: 100%; /* Ensure the game-container takes up full width */
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    img {
+        width: 80px;
+        height: 80px;
+    }
+
+    button {
+        width: 100%;
+    }
 }
 
     </style>
